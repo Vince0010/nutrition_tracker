@@ -1,6 +1,3 @@
-
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,11 +18,11 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <script>
         // JavaScript to toggle dropdown
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const toggleBtn = document.getElementById("dashboardToggle");
             const dropdownMenu = document.getElementById("dashboardDropdown");
 
-            toggleBtn.addEventListener("click", function (event) {
+            toggleBtn.addEventListener("click", function(event) {
                 event.preventDefault();
                 dropdownMenu.classList.toggle("max-h-0");
                 dropdownMenu.classList.toggle("opacity-0");
@@ -40,7 +37,7 @@
     <!-- ApexCharts Script -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var options = {
                 series: [75.55],
                 chart: {
@@ -59,14 +56,14 @@
                         }
                     },
                 },
-                colors: ['#FCD404', '#FB6F74'],  // Define the gradient colors
+                colors: ['#FCD404', '#FB6F74'], // Define the gradient colors
                 fill: {
-                    type: 'gradient',  // Use gradient fill
+                    type: 'gradient', // Use gradient fill
                     gradient: {
                         shade: 'light',
                         type: 'linear',
                         shadeIntensity: 0.5,
-                        gradientToColors: ['#FB6F74'],  // Gradient from #FCD404 to #FB6F74
+                        gradientToColors: ['#FB6F74'], // Gradient from #FCD404 to #FB6F74
                         inverseColors: false,
                         opacityFrom: 1,
                         opacityTo: 1,
@@ -93,7 +90,9 @@
 
             try {
                 const response = await fetch(url, {
-                    headers: { 'X-Api-Key': apiKey }
+                    headers: {
+                        'X-Api-Key': apiKey
+                    }
                 });
 
                 const data = await response.json();
@@ -132,7 +131,7 @@
         <div class="flex h-screen overflow-hidden">
             <!-- ===== Sidebar Start ===== -->
             <aside :class="sidebarToggle ? 'translate-x-0 lg:w-[90px]' : '-translate-x-full'"
-                class="sidebar fixed top-0 left-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 lg:static lg:translate-x-0 dark:border-gray-800 dark:bg-black -translate-x-full shadow-lg"
+                class="sidebar fixed top-0 left-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 lg:static lg:translate-x-0     -translate-x-full shadow-lg"
                 @click.outside="sidebarToggle = false">
 
                 <!-- SIDEBAR LOGO -->
@@ -162,8 +161,8 @@
                             <!-- Menu Item: Dashboard -->
                             <li>
                                 <a href="#"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                                    <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 "
                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                         viewBox="0 0 20 20">
                                         <path
@@ -178,7 +177,7 @@
                             </li>
                             <li>
                                 <a href="meals.php"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -190,8 +189,8 @@
                             </li>
                             <li>
                                 <a href="#"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                                    <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 "
                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                         viewBox="0 0 18 18">
                                         <path
@@ -199,13 +198,13 @@
                                     </svg>
                                     <span class="flex-1 ms-3 whitespace-nowrap">Progress Tracking</span>
                                     <span
-                                        class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+                                        class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full">Pro</span>
                                 </a>
                             </li>
                             <!-- Side Bar: COMMUNITY PAGE -->
                             <li>
                                 <a href="#"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -214,7 +213,7 @@
 
                                     <span class="flex-1 ms-3 whitespace-nowrap">Community Page</span>
                                     <span
-                                        class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                                        class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full ">3</span>
                                 </a>
                             </li>
                         </ul>
@@ -265,19 +264,19 @@
 
                                     <!-- Metric Item Start -->
                                     <div
-                                        class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] shadow-md md:p-6">
+                                        class="rounded-2xl border border-gray-200 bg-white p-5 shadow-md md:p-6">
                                         <div class="mt-2 flex items-end justify-between">
                                             <div>
-                                                <span class="text-sm text-gray-500 dark:text-gray-400">Calorie
+                                                <span class="text-sm text-gray-500 ">Calorie
                                                     Intake</span>
                                                 <h4
-                                                    class="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">
+                                                    class="mt-2 text-title-sm font-bold text-gray-800 ">
                                                     3,782 cal
                                                 </h4>
                                             </div>
 
                                             <span
-                                                class="flex items-center gap-1 rounded-full bg-error-50 py-0.5 pl-2 pr-2 text-sm font-medium text-error-600 dark:bg-error-500/15 dark:text-error-500">
+                                                class="flex items-center gap-1 rounded-full bg-error-50 py-0.5 pl-2 pr-2 text-sm font-medium text-error-600 ">
                                                 <svg class="fill-current" width="12" height="12" viewBox="0 0 12 12"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -295,18 +294,18 @@
 
                                     <!-- Metric Item Start -->
                                     <div
-                                        class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] shadow-md md:p-6">
+                                        class="rounded-2xl border border-gray-200 bg-white p-5  shadow-md md:p-6">
                                         <div class="mt-2 flex items-end justify-between">
                                             <div>
-                                                <span class="text-sm text-gray-500 dark:text-gray-400">Weight</span>
+                                                <span class="text-sm text-gray-500 ">Weight</span>
                                                 <h4
-                                                    class="mt-2 text-title-sm font-bold text-gray-800 dark:text-white/90">
+                                                    class="mt-2 text-title-sm font-bold text-gray-800 ">
                                                     62kg
                                                 </h4>
                                             </div>
 
                                             <span
-                                                class="flex items-center gap-1 rounded-full bg-error-50 py-0.5 pl-2 pr-2.5 text-sm font-medium text-error-600 dark:bg-error-500/15 dark:text-error-500">
+                                                class="flex items-center gap-1 rounded-full bg-error-50 py-0.5 pl-2 pr-2.5 text-sm font-medium text-error-600 ">
                                                 <svg class="fill-current" width="12" height="12" viewBox="0 0 12 12"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -324,98 +323,98 @@
 
                                 <!-- ====== Chart One Start -->
                                 <div
-                                    class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-gray-800 dark:bg-white/[0.03] shadow-md max-h-64 sm:max-h-80 overflow-y-auto">
+                                    class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-md max-h-64 sm:max-h-80 overflow-y-auto">
                                     <div class="flex items-center justify-between">
-                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90 mb-2">
+                                        <h3 class="text-lg font-semibold text-gray-800 mb-2">
                                             Daily Log Checker
                                         </h3>
                                     </div>
                                     <div
-                                        class="w-full rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.05] shadow-sm transition-all duration-300 hover:shadow-md">
+                                        class="w-full rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
                                         <div
-                                            class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 transition-all duration-300 max-w-screen-lg mx-auto">
+                                            class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-100 transition-all duration-300 max-w-screen-lg mx-auto">
                                             <!-- Text Content (60% width) -->
                                             <div class="flex-1 mr-4" style="flex-basis: 60%;">
                                                 <h5
-                                                    class="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                                                    class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
                                                     Drank water?
                                                 </h5>
-                                                <p class="text-sm font-normal text-gray-700 dark:text-gray-400 mb-4">
+                                                <p class="text-sm font-normal text-gray-700  mb-4">
                                                     Have you drank enough glasses of water today?
                                                 </p>
                                             </div>
 
                                             <!-- Digit Input (on the right side) -->
                                             <input type="number" id="water-input"
-                                                class="w-24 h-12 text-center border border-gray-300 rounded-full bg-white dark:bg-gray-900 dark:text-white text-gray-900 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                class="w-24 h-12 text-center border border-gray-300 rounded-full bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                 placeholder="0" min="0" step="1">
                                         </div>
                                     </div>
 
                                     <!-- GOAL 1 -->
                                     <div
-                                        class="w-full rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.05] shadow-sm transition-all duration-300 hover:shadow-md">
+                                        class="w-full rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
                                         <div
-                                            class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 transition-all duration-300 max-w-screen-lg mx-auto">
+                                            class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-100 transition-all duration-300 max-w-screen-lg mx-auto">
                                             <!-- Text Content (60% width) -->
                                             <div class="flex-1 mr-4" style="flex-basis: 60%;">
                                                 <h5
-                                                    class="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                                                    class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
                                                     Food Eaten
                                                 </h5>
-                                                <p class="text-sm font-normal text-gray-700 dark:text-gray-400 mb-4">
+                                                <p class="text-sm font-normal text-gray-700 mb-4">
                                                     what did you eat today?
                                                 </p>
                                             </div>
 
                                             <!-- Button (on the right side) -->
                                             <div>
-                                            <input type="text" id="foodInput" placeholder="Enter food name" />
-                                            <button onclick="fetchCalories()">Search</button>
-                                            <div id="results"></div>
+                                                <input type="text" id="foodInput" placeholder="Enter food name" />
+                                                <button onclick="fetchCalories()">Search</button>
+                                                <div id="results"></div>
                                             </div>
                                         </div>
 
                                     </div>
                                     <!-- GOAL 1 -->
                                     <br><br>
-    <!-- GOAL 1 (Calories) -->
-    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
-        <h5 class="mb-2 text-lg font-semibold text-gray-900">Calories</h5>
-        <p class="text-sm text-gray-700">Calories needed to sustain basic functions.</p>
-        <div class="pb-1">
-            <div id="bmr1" class="text-lg text-gray-900 font-bold">0 kcal</div>
-        </div>
-    </div>
+                                    <!-- GOAL 1 (Calories) -->
+                                    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                                        <h5 class="mb-2 text-lg font-semibold text-gray-900">Calories</h5>
+                                        <p class="text-sm text-gray-700">Calories needed to sustain basic functions.</p>
+                                        <div class="pb-1">
+                                            <div id="bmr1" class="text-lg text-gray-900 font-bold">0 kcal</div>
+                                        </div>
+                                    </div>
 
-    <!-- GOAL 2 (Protein) -->
-    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
-        <h5 class="mb-2 text-lg font-semibold text-gray-900">Protein Intake</h5>
-        <p class="text-sm text-gray-700">Protein requirement for muscle maintenance.</p>
-        <div class="pb-1">
-            <div id="bmr2" class="text-lg text-gray-900 font-bold">0 g</div>
-        </div>
-    </div>
+                                    <!-- GOAL 2 (Protein) -->
+                                    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                                        <h5 class="mb-2 text-lg font-semibold text-gray-900">Protein Intake</h5>
+                                        <p class="text-sm text-gray-700">Protein requirement for muscle maintenance.</p>
+                                        <div class="pb-1">
+                                            <div id="bmr2" class="text-lg text-gray-900 font-bold">0 g</div>
+                                        </div>
+                                    </div>
 
-    <!-- GOAL 3 (Carbohydrates) -->
-    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
-        <h5 class="mb-2 text-lg font-semibold text-gray-900">Carbohydrates</h5>
-        <p class="text-sm text-gray-700">Carbs are the primary source of energy.</p>
-        <div class="pb-1">
-            <div id="bmr3" class="text-lg text-gray-900 font-bold">0 g</div>
-        </div>
-    </div>
+                                    <!-- GOAL 3 (Carbohydrates) -->
+                                    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
+                                        <h5 class="mb-2 text-lg font-semibold text-gray-900">Carbohydrates</h5>
+                                        <p class="text-sm text-gray-700">Carbs are the primary source of energy.</p>
+                                        <div class="pb-1">
+                                            <div id="bmr3" class="text-lg text-gray-900 font-bold">0 g</div>
+                                        </div>
+                                    </div>
 
 
                                 </div>
 
                                 <!-- ====== Chart One End -->
                             </div>
-                            <div
-                                class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-gray-800 dark:bg-white/[0.03] shadow-md max-h-[29rem] w-full">
+                            <!--DASHBOARD: GOALS -->
+                            <div class="overflow-auto rounded-2xl border border-gray-200 bg-white w-full flex flex-col shadow-md max-h-[29rem] ">
                                 <!-- Title Section -->
                                 <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90 mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-800  mb-2">
                                         Goals
                                     </h3>
                                 </div>
@@ -423,28 +422,28 @@
                                 <!-- Scrollable Content Section -->
                                 <div class="flex flex-col h-full w-full">
                                     <!-- Scrollable Content Section -->
-                                    <div class="flex-1 min-h-0 overflow-hidden">
+                                    <div class="flex-1 overflow-y-auto">
                                         <div class="h-full max-h-full overflow-y-auto space-y-2 pr-2 flex flex-col">
                                             <!-- Reduced space-y-4 to space-y-2 -->
 
                                             <!-- GOAL 1 -->
                                             <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.05] shadow-sm transition-all duration-300 hover:shadow-md">
+                                                class="w-full rounded-xl border border-gray-200 bg-white  shadow-sm transition-all duration-300 hover:shadow-md">
                                                 <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 transition-all duration-300">
+                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
                                                     <!-- Reduced padding to p-3 -->
                                                     <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
                                                         BMR (Basal Metabolic Rate)
                                                     </h5>
                                                     <p
-                                                        class="text-sm font-normal text-gray-700 dark:text-gray-400 mb-4">
+                                                        class="text-sm font-normal text-gray-700  mb-4">
                                                         Number of calories your body needs to accomplish its most basic
                                                         (basal) life-sustaining functions.
                                                     </p>
                                                     <!-- Progress bar container -->
                                                     <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                                                        <div class="w-full bg-gray-200 rounded-full ">
                                                             <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                                                                 style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 20%">
                                                                 20%
@@ -457,22 +456,22 @@
 
                                             <!-- GOAL 1 -->
                                             <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.05] shadow-sm transition-all duration-300 hover:shadow-md">
+                                                class="w-full rounded-xl border border-gray-200 bg-white  shadow-sm transition-all duration-300 hover:shadow-md">
                                                 <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 transition-all duration-300">
+                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
                                                     <!-- Reduced padding to p-3 -->
                                                     <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
                                                         BMR (Basal Metabolic Rate)
                                                     </h5>
                                                     <p
-                                                        class="text-sm font-normal text-gray-700 dark:text-gray-400 mb-4">
+                                                        class="text-sm font-normal text-gray-700 mb-4">
                                                         Number of calories your body needs to accomplish its most basic
                                                         (basal) life-sustaining functions.
                                                     </p>
                                                     <!-- Progress bar container -->
                                                     <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                                                        <div class="w-full bg-gray-200 rounded-full">
                                                             <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                                                                 style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 43%">
                                                                 43%
@@ -483,22 +482,22 @@
                                             </div>
                                             <!-- GOAL 1 -->
                                             <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.05] shadow-sm transition-all duration-300 hover:shadow-md">
+                                                class="w-full rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
                                                 <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 transition-all duration-300">
+                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
                                                     <!-- Reduced padding to p-3 -->
                                                     <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
                                                         BMR (Basal Metabolic Rate)
                                                     </h5>
                                                     <p
-                                                        class="text-sm font-normal text-gray-700 dark:text-gray-400 mb-4">
+                                                        class="text-sm font-normal text-gray-700 mb-4">
                                                         Number of calories your body needs to accomplish its most basic
                                                         (basal) life-sustaining functions.
                                                     </p>
                                                     <!-- Progress bar container -->
                                                     <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                                                        <div class="w-full bg-gray-200 rounded-full ">
                                                             <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                                                                 style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 56%">
                                                                 56%
@@ -509,22 +508,22 @@
                                             </div>
                                             <!-- GOAL 1 -->
                                             <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.05] shadow-sm transition-all duration-300 hover:shadow-md">
+                                                class="w-full rounded-xl border border-gray-200 bg-white  shadow-sm transition-all duration-300 hover:shadow-md">
                                                 <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-800 transition-all duration-300">
+                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
                                                     <!-- Reduced padding to p-3 -->
                                                     <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
                                                         BMR (Basal Metabolic Rate)
                                                     </h5>
                                                     <p
-                                                        class="text-sm font-normal text-gray-700 dark:text-gray-400 mb-4">
+                                                        class="text-sm font-normal text-gray-700 mb-4">
                                                         Number of calories your body needs to accomplish its most basic
                                                         (basal) life-sustaining functions.
                                                     </p>
                                                     <!-- Progress bar container -->
                                                     <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+                                                        <div class="w-full bg-gray-200 rounded-full ">
                                                             <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                                                                 style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 20%">
                                                                 20%
@@ -547,17 +546,17 @@
                             <div class="col-span-12 md:col-span-7 xl:col-span-3">
                                 <!-- Chart Container -->
                                 <div
-                                    class="rounded-2xl border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white/[0.03] h-full flex flex-col shadow-md">
+                                    class="rounded-2xl border border-gray-200 bg-gray-100 h-full flex flex-col shadow-md">
                                     <div
-                                        class="shadow-default rounded-2xl bg-white px-4 md:px-5 pb-6 pt-5 dark:bg-gray-900 flex flex-col h-full">
+                                        class="shadow-default rounded-2xl bg-white px-4 md:px-5 pb-6 pt-5 flex flex-col h-full">
 
                                         <!-- Title Section -->
                                         <div class="flex flex-col sm:flex-row justify-between items-start ">
                                             <div>
-                                                <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
+                                                <h3 class="text-lg font-semibold text-gray-800 ">
                                                     Monthly Target
                                                 </h3>
-                                                <p class="mt-1 text-sm md:text-base text-gray-500 dark:text-gray-400">
+                                                <p class="mt-1 text-sm md:text-base text-gray-500 ">
                                                     Target you’ve set for each month
                                                 </p>
                                             </div>
@@ -583,7 +582,7 @@
                             <!-- ====== Community Page Start ====== -->
                             <div class="col-span-12">
                                 <div
-                                    class="overflow-auto max-h-90 rounded-2xl border border-gray-200 bg-white p-5 shadow-lg dark:border-gray-800 dark:bg-gray-800/[0.05]">
+                                    class="overflow-auto max-h-90 rounded-2xl border border-gray-200 bg-white p-5 shadow-lg ">
                                     <!-- Header -->
                                     <div
                                         class="bg-gradient-to-r from-blue-500 to-indigo-600 text-black text-lg font-semibold py-3 px-4 rounded-t-xl">
