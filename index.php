@@ -4,47 +4,39 @@ require_once 'php_action/db_connect.php';
 session_start();
 
 // Redirect if the user is already logged in
-if (isset($_SESSION['userId'])) {
+if (isset($_SESSION['user_id'])) {
     header('Location: http://localhost:3000/dashboard.php');
     exit();
 }
 
 $errors = [];
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = isset($_POST['username']) ? trim($_POST['username']) : '';
-    $password = $_POST['password'] ?? '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($_POST['username']);
+    $password = md5($_POST['password']); // Keep using md5 for now
 
-    // Check if username and password are empty
-    if (empty($username)) {
-        $errors[] = "Username is required";
-    }
-    if (empty($password)) {
-        $errors[] = "Password is required";
-    }
-
-    if (empty($errors)) {
-        // Prepare the SQL statement to prevent SQL injection
-        $sql = "SELECT * FROM users WHERE username = ?";
+    if (empty($username) || empty($password)) {
+        if ($username == "") $errors[] = "Username is required";
+        if ($_POST['password'] == "") $errors[] = "Password is required"; // Check the raw input
+    } else {
+        // Query the database for the user
+        $sql = "SELECT user_id FROM users WHERE username = ? AND password = ?";
         $stmt = $connect->prepare($sql);
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows == 1) {
             $user = $result->fetch_assoc();
-            $hashedPassword = md5($password);
+            $_SESSION['user_id'] = $user['user_id']; // Store user_id in session
 
-            // Verify the hashed password
-            if ($hashedPassword === $user['password']) {
-                $_SESSION['userId'] = $user['user_id'];
-                header('Location: http://localhost:3000/dashboard.php');
-                exit();
-            } else {
-                $errors[] = "Incorrect username/password combination";
-            }
+            // Debugging (optional)
+            echo "Session user_id set: " . $_SESSION['user_id'];
+
+            header('Location: http://localhost:3000/dashboard.php');
+            exit();
         } else {
-            $errors[] = "Username does not exist";
+            $errors[] = "Incorrect username/password combination";
         }
     }
 }
