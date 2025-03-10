@@ -1,22 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script defer src="script.js"></script> <!-- Link to JavaScript -->
+    <script defer src="script.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>BiteTrack - Your Nutrient Tracker!</title>
     <script src="js/food_db_api.js"></script>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Flowbite (for dropdowns, animations, etc.) -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="custom/css/custom.css">
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/sidebar.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
+        function toggleCheck() {
+            const button = document.getElementById("check-button");
+            const icon = document.getElementById("check-icon");
+            const message = document.getElementById("saved-message");
+
+            // Toggle checked state
+            const isChecked = button.classList.contains("bg-green-500");
+
+            if (!isChecked) {
+                // Mark as checked
+                button.classList.add("bg-green-500", "border-green-500", "text-white");
+
+                message.classList.remove("opacity-0");
+            } else {
+                // Uncheck
+                button.classList.remove("bg-green-500", "border-green-500", "text-white");
+                icon.setAttribute("fill", "none");
+                message.classList.add("opacity-0");
+            }
+        }
         // JavaScript to toggle dropdown
         document.addEventListener("DOMContentLoaded", function() {
             const toggleBtn = document.getElementById("dashboardToggle");
@@ -30,13 +51,6 @@
                 dropdownMenu.classList.toggle("opacity-100");
             });
         });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <!-- ApexCharts Script -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <!-- ApexCharts Script -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script>
         document.addEventListener("DOMContentLoaded", function() {
             var options = {
                 series: [75.55],
@@ -117,9 +131,6 @@
         }
     </script>
 
-
-
-
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -129,119 +140,8 @@
 
         <!-- ===== Page Wrapper Start ===== -->
         <div class="flex h-screen overflow-hidden">
-            <!-- ===== Sidebar Start ===== -->
-            <aside :class="sidebarToggle ? 'translate-x-0 lg:w-[90px]' : '-translate-x-full'"
-                class="sidebar fixed top-0 left-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 lg:static lg:translate-x-0     -translate-x-full shadow-lg"
-                @click.outside="sidebarToggle = false">
-
-                <!-- SIDEBAR LOGO -->
-                <div class="flex items-center gap-4 p-2 mb-2 mt-2">
-                    <a href="dashboard.php" class="flex items-center gap-1 logo-hover">
-                        <img src="photos/plan.png" class="h-10 w-auto" alt="BiteTrack Logo">
-                        <span class="text-lg font-bold text-gray-900">BiteTrack</span>
-                    </a>
-                </div>
-
-                <hr class="border-gray-300 w-full mx-0">
-
-
-                <div class="container mx-auto p-6 pt-2">
-                    <h1 class="text-3xl font-semibold text-gray-800"><span
-                            class="text-2xl font-semibold text-gray-800">Welcome to your</span> Dashboard</h1>
-                    <p class="text-gray-600 mt-2">Manage your Goals, Progress, and other features.</p>
-                </div>
-                <hr class="border-gray-300 w-full mx-0">
-                <!-- SIDEBAR HEADER -->
-
-                <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
-                    <!-- SIDEBAR Menu -->
-                    <nav class="mt-4">
-                        <ul class="flex flex-col gap-4">
-
-                            <!-- Menu Item: Dashboard -->
-                            <li>
-                                <a href="#"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                                    <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 "
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                        viewBox="0 0 20 20">
-                                        <path
-                                            d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
-                                        <path
-                                            d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
-                                        <path
-                                            d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
-                                    </svg>
-                                    <span class="flex-1 ms-3 whitespace-nowrap">Edit Goals</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="meals.php"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
-                                    </svg>
-
-                                    <span class="flex-1 ms-3 whitespace-nowrap">Meal Logs</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                                    <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 "
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                        viewBox="0 0 18 18">
-                                        <path
-                                            d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                                    </svg>
-                                    <span class="flex-1 ms-3 whitespace-nowrap">Progress Tracking</span>
-                                    <span
-                                        class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full">Pro</span>
-                                </a>
-                            </li>
-                            <!-- Side Bar: COMMUNITY PAGE -->
-                            <li>
-                                <a href="#"
-                                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="size-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
-                                    </svg>
-
-                                    <span class="flex-1 ms-3 whitespace-nowrap">Community Page</span>
-                                    <span
-                                        class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full ">3</span>
-                                </a>
-                            </li>
-                        </ul>
-                </div>
-                <section>
-                    <div id="sb_userprofile" class="absolute bottom-4 right-4 flex items-center gap-4">
-
-                        <!-- Logout Button -->
-                        <a href="logout.php" id="log_out" class="auth-buttons flex items-center gap-2 px-5 py-2 rounded-full text-black font-semibold shadow-md 
-               bg-gradient-to-r from-yellow-400 to-red-400 hover:scale-105 hover:opacity-90 
-               transition duration-300 ease-in-out">
-                            Logout
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        </a>
-                    </div>
-                </section>
-
-
-            </aside>
-
-            <!-- ===== 
-       
-      
-      Sidebar End 
-       
-       
-       ===== -->
-
+            <!-- ===== SIDEBAR INCLUSION ===== -->
+            <?php require_once 'includes/sidebar.php'; ?>
 
 
             <!-- ===== Content Area Start ===== -->
@@ -254,292 +154,133 @@
                 <!-- ===== Main Content Start ===== -->
                 <main>
                     <!-- ===== Header Start ===== -->
-
-
                     <div class="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
                         <div class="grid grid-cols-30 gap-4 md:gap-6">
                             <div class="col-span-12 space-y-6 xl:col-span-7">
                                 <!-- Metric Group One -->
                                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
-
                                     <!-- Metric Item Start -->
-                                    <div
-                                        class="rounded-2xl border border-gray-200 bg-white p-5 shadow-md md:p-6">
-                                        <div class="mt-2 flex items-end justify-between">
+                                    <div class="w-full max-w-[20rem] md:max-w-[24rem] lg:max-w-[28rem] rounded-2xl border border-gray-200 bg-white p-4 md:p-6 shadow-md mx-auto flex flex-col space-y-3">
+                                        <div class="flex items-center justify-between">
                                             <div>
-                                                <span class="text-sm text-gray-500 ">Calorie
-                                                    Intake</span>
-                                                <h4
-                                                    class="mt-2 text-title-sm font-bold text-gray-800 ">
-                                                    3,782 cal
-                                                </h4>
+                                                <span class="text-sm text-gray-500">Calorie Intake</span>
+                                                <h4 class="mt-1 text-lg font-bold text-gray-800">3,782 cal</h4>
                                             </div>
-
-                                            <span
-                                                class="flex items-center gap-1 rounded-full bg-error-50 py-0.5 pl-2 pr-2 text-sm font-medium text-error-600 ">
-                                                <svg class="fill-current" width="12" height="12" viewBox="0 0 12 12"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <span class="flex items-center gap-1 rounded-full bg-red-100 py-0.5 px-2 text-sm font-medium text-red-600">
+                                                <svg class="fill-current" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M5.31462 10.3761C5.45194 10.5293 5.65136 10.6257 5.87329 10.6257C5.8736 10.6257 5.8739 10.6257 5.87421 10.6257C6.0663 10.6259 6.25845 10.5527 6.40505 10.4062L9.40514 7.4082C9.69814 7.11541 9.69831 6.64054 9.40552 6.34754C9.11273 6.05454 8.63785 6.05438 8.34486 6.34717L6.62329 8.06753L6.62329 1.875C6.62329 1.46079 6.28751 1.125 5.87329 1.125C5.45908 1.125 5.12329 1.46079 5.12329 1.875L5.12329 8.06422L3.40516 6.34719C3.11218 6.05439 2.6373 6.05454 2.3445 6.34752C2.0517 6.64051 2.05185 7.11538 2.34484 7.40818L5.31462 10.3761Z"
-                                                        fill=""></path>
+                                                        d="M5.31462 10.3761C5.45194 10.5293 5.65136 10.6257 5.87329 10.6257C5.8736 10.6257 5.8739 10.6257 5.87421 10.6257C6.0663 10.6259 6.25845 10.5527 6.40505 10.4062L9.40514 7.4082C9.69814 7.11541 9.69831 6.64054 9.40552 6.34754C9.11273 6.05454 8.63785 6.05438 8.34486 6.34717L6.62329 8.06753V1.875C6.62329 1.46079 6.28751 1.125 5.87329 1.125C5.45908 1.125 5.12329 1.46079 5.12329 1.875V8.06422L3.40516 6.34719C3.11218 6.05439 2.6373 6.05454 2.3445 6.34752C2.0517 6.64051 2.05185 7.11538 2.34484 7.40818L5.31462 10.3761Z">
+                                                    </path>
                                                 </svg>
-
                                                 11.01%
-                                                <br>
-                                                lower than last week.
                                             </span>
                                         </div>
+
+                                        <!-- Comment Section -->
+                                        <div class="text-sm text-gray-500 text-center">
+                                            Lower than last week.
+                                        </div>
                                     </div>
-                                    <!-- Metric Item End -->
+
 
                                     <!-- Metric Item Start -->
-                                    <div
-                                        class="rounded-2xl border border-gray-200 bg-white p-5  shadow-md md:p-6">
-                                        <div class="mt-2 flex items-end justify-between">
+                                    <div class="rounded-2xl border border-gray-200 bg-white p-4 shadow-md md:p-5 flex flex-col space-y-3">
+                                        <div class="flex items-center justify-between">
                                             <div>
-                                                <span class="text-sm text-gray-500 ">Weight</span>
-                                                <h4
-                                                    class="mt-2 text-title-sm font-bold text-gray-800 ">
-                                                    62kg
-                                                </h4>
+                                                <span class="text-sm text-gray-500">Current Weight</span>
+                                                <h4 class="mt-1 text-lg font-bold text-gray-800">52 kg</h4>
                                             </div>
-
-                                            <span
-                                                class="flex items-center gap-1 rounded-full bg-error-50 py-0.5 pl-2 pr-2.5 text-sm font-medium text-error-600 ">
-                                                <svg class="fill-current" width="12" height="12" viewBox="0 0 12 12"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <span class="flex items-center gap-1 rounded-full bg-red-100 py-0.5 px-2 text-sm font-medium text-red-600">
+                                                <svg class="fill-current" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M5.31462 10.3761C5.45194 10.5293 5.65136 10.6257 5.87329 10.6257C5.8736 10.6257 5.8739 10.6257 5.87421 10.6257C6.0663 10.6259 6.25845 10.5527 6.40505 10.4062L9.40514 7.4082C9.69814 7.11541 9.69831 6.64054 9.40552 6.34754C9.11273 6.05454 8.63785 6.05438 8.34486 6.34717L6.62329 8.06753L6.62329 1.875C6.62329 1.46079 6.28751 1.125 5.87329 1.125C5.45908 1.125 5.12329 1.46079 5.12329 1.875L5.12329 8.06422L3.40516 6.34719C3.11218 6.05439 2.6373 6.05454 2.3445 6.34752C2.0517 6.64051 2.05185 7.11538 2.34484 7.40818L5.31462 10.3761Z"
-                                                        fill=""></path>
+                                                        d="M5.31462 10.3761C5.45194 10.5293 5.65136 10.6257 5.87329 10.6257C5.8736 10.6257 5.8739 10.6257 5.87421 10.6257C6.0663 10.6259 6.25845 10.5527 6.40505 10.4062L9.40514 7.4082C9.69814 7.11541 9.69831 6.64054 9.40552 6.34754C9.11273 6.05454 8.63785 6.05438 8.34486 6.34717L6.62329 8.06753V1.875C6.62329 1.46079 6.28751 1.125 5.87329 1.125C5.45908 1.125 5.12329 1.46079 5.12329 1.875V8.06422L3.40516 6.34719C3.11218 6.05439 2.6373 6.05454 2.3445 6.34752C2.0517 6.64051 2.05185 7.11538 2.34484 7.40818L5.31462 10.3761Z">
+                                                    </path>
                                                 </svg>
-
                                                 9.05%
                                             </span>
                                         </div>
+
+                                        <!-- Weight Input -->
+                                        <div class="flex items-center justify-between">
+                                            <label for="weight-input" class="text-sm font-medium text-gray-700">Update Weight (kg):</label>
+                                            <div class="flex items-center gap-2">
+                                                <input id="weight-input" type="number" class="w-20 p-1 border rounded-lg text-sm text-center focus:ring-2 focus:ring-blue-300 focus:outline-none" min="0" step="0.1">
+                                                <button class="px-3 py-1 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 transition">Save</button>
+                                            </div>
+                                        </div>
                                     </div>
+
                                     <!-- Metric Item End -->
                                 </div>
                                 <!-- Metric Group One -->
 
                                 <!-- ====== Chart One Start -->
-                                <div
-                                    class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 shadow-md max-h-64 sm:max-h-80 overflow-y-auto">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-lg font-semibold text-gray-800 mb-2">
-                                            Daily Log Checker
-                                        </h3>
+                                <div class="overflow-hidden rounded-xl border border-gray-200 bg-white p-4 sm:p-5 shadow-md max-h-90 overflow-y-auto">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <h3 class="text-lg font-semibold text-gray-800">Daily Log Checker</h3>
                                     </div>
-                                    <div
-                                        class="w-full rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
-                                        <div
-                                            class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-100 transition-all duration-300 max-w-screen-lg mx-auto">
-                                            <!-- Text Content (60% width) -->
-                                            <div class="flex-1 mr-4" style="flex-basis: 60%;">
-                                                <h5
-                                                    class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
-                                                    Drank water?
-                                                </h5>
-                                                <p class="text-sm font-normal text-gray-700  mb-4">
-                                                    Have you drank enough glasses of water today?
-                                                </p>
-                                            </div>
 
-                                            <!-- Digit Input (on the right side) -->
-                                            <input type="number" id="water-input"
-                                                class="w-24 h-12 text-center border border-gray-300 rounded-full bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                placeholder="0" min="0" step="1">
+                                    <div class="w-full rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition p-4 flex items-center justify-between">
+                                        <div class="flex-1">
+                                            <h5 class="text-md font-semibold text-gray-900">Drank water?</h5>
+                                            <p class="text-sm text-gray-700">Have you had enough glasses of water today?</p>
+                                        </div>
+
+                                        <!-- Check Button -->
+                                        <button id="check-button" onclick="toggleCheck()"
+                                            class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-400 text-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-100 focus:outline-none">
+                                            <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                            </svg>
+
+                                        </button>
+                                    </div>
+
+                                    <!-- Saved Message -->
+                                    <div id="saved-message" class="mt-1 text-sm text-green-600 font-semibold opacity-0 transition-opacity duration-500">
+                                        ✅ Great Job!
+                                    </div>
+
+                                    <!-- Food Intake -->
+                                    <div class="w-full rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition p-3 flex items-center justify-between mt-2">
+                                        <div class="flex-1">
+                                            <h5 class="text-md font-semibold text-gray-900">Food Eaten</h5>
+                                            <p class="text-sm text-gray-700">What did you eat today?</p>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <input type="text" id="foodInput" class="border border-gray-300 p-2 rounded-lg text-sm" placeholder="Enter food name" />
+                                            <button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-600 transition" onclick="fetchCalories()">Add</button>
                                         </div>
                                     </div>
 
-                                    <!-- GOAL 1 -->
-                                    <div
-                                        class="w-full rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
-                                        <div
-                                            class="flex items-center justify-between p-4 rounded-lg hover:bg-gray-100 transition-all duration-300 max-w-screen-lg mx-auto">
-                                            <!-- Text Content (60% width) -->
-                                            <div class="flex-1 mr-4" style="flex-basis: 60%;">
-                                                <h5
-                                                    class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
-                                                    Food Eaten
-                                                </h5>
-                                                <p class="text-sm font-normal text-gray-700 mb-4">
-                                                    what did you eat today?
-                                                </p>
-                                            </div>
-
-                                            <!-- Button (on the right side) -->
-                                            <div>
-                                                <input type="text" id="foodInput" placeholder="Enter food name" />
-                                                <button onclick="fetchCalories()">Search</button>
-                                                <div id="results"></div>
-                                            </div>
+                                    <!-- Calories, Protein, Carbs -->
+                                    <div class="grid grid-cols-3 gap-2 mt-3">
+                                        <!-- Calories -->
+                                        <div class="w-full rounded-lg border border-gray-200 bg-white shadow-sm p-3 text-center">
+                                            <h5 class="text-md font-semibold text-gray-900">Calories</h5>
+                                            <p class="text-xs text-gray-600">Daily calorie requirement.</p>
+                                            <div id="bmr1" class="text-lg text-gray-900 font-bold mt-1">0 kcal</div>
                                         </div>
 
-                                    </div>
-                                    <!-- GOAL 1 -->
-                                    <br><br>
-                                    <!-- GOAL 1 (Calories) -->
-                                    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
-                                        <h5 class="mb-2 text-lg font-semibold text-gray-900">Calories</h5>
-                                        <p class="text-sm text-gray-700">Calories needed to sustain basic functions.</p>
-                                        <div class="pb-1">
-                                            <div id="bmr1" class="text-lg text-gray-900 font-bold">0 kcal</div>
+                                        <!-- Protein -->
+                                        <div class="w-full rounded-lg border border-gray-200 bg-white shadow-sm p-3 text-center">
+                                            <h5 class="text-md font-semibold text-gray-900">Protein</h5>
+                                            <p class="text-xs text-gray-600">Required for muscle maintenance.</p>
+                                            <div id="bmr2" class="text-lg text-gray-900 font-bold mt-1">0 g</div>
+                                        </div>
+
+                                        <!-- Carbohydrates -->
+                                        <div class="w-full rounded-lg border border-gray-200 bg-white shadow-sm p-3 text-center">
+                                            <h5 class="text-md font-semibold text-gray-900">Carbs</h5>
+                                            <p class="text-xs text-gray-600">Primary source of energy.</p>
+                                            <div id="bmr3" class="text-lg text-gray-900 font-bold mt-1">0 g</div>
                                         </div>
                                     </div>
-
-                                    <!-- GOAL 2 (Protein) -->
-                                    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
-                                        <h5 class="mb-2 text-lg font-semibold text-gray-900">Protein Intake</h5>
-                                        <p class="text-sm text-gray-700">Protein requirement for muscle maintenance.</p>
-                                        <div class="pb-1">
-                                            <div id="bmr2" class="text-lg text-gray-900 font-bold">0 g</div>
-                                        </div>
-                                    </div>
-
-                                    <!-- GOAL 3 (Carbohydrates) -->
-                                    <div class="w-full rounded-xl border border-gray-200 bg-white shadow-sm">
-                                        <h5 class="mb-2 text-lg font-semibold text-gray-900">Carbohydrates</h5>
-                                        <p class="text-sm text-gray-700">Carbs are the primary source of energy.</p>
-                                        <div class="pb-1">
-                                            <div id="bmr3" class="text-lg text-gray-900 font-bold">0 g</div>
-                                        </div>
-                                    </div>
-
-
                                 </div>
 
                                 <!-- ====== Chart One End -->
                             </div>
                             <!--DASHBOARD: GOALS -->
-                            <div class="overflow-auto rounded-2xl border border-gray-200 bg-white w-full flex flex-col shadow-md max-h-[29rem] ">
-                                <!-- Title Section -->
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-gray-800  mb-2">
-                                        Goals
-                                    </h3>
-                                </div>
-
-                                <!-- Scrollable Content Section -->
-                                <div class="flex flex-col h-full w-full">
-                                    <!-- Scrollable Content Section -->
-                                    <div class="flex-1 overflow-y-auto">
-                                        <div class="h-full max-h-full overflow-y-auto space-y-2 pr-2 flex flex-col">
-                                            <!-- Reduced space-y-4 to space-y-2 -->
-
-                                            <!-- GOAL 1 -->
-                                            <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white  shadow-sm transition-all duration-300 hover:shadow-md">
-                                                <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
-                                                    <!-- Reduced padding to p-3 -->
-                                                    <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
-                                                        BMR (Basal Metabolic Rate)
-                                                    </h5>
-                                                    <p
-                                                        class="text-sm font-normal text-gray-700  mb-4">
-                                                        Number of calories your body needs to accomplish its most basic
-                                                        (basal) life-sustaining functions.
-                                                    </p>
-                                                    <!-- Progress bar container -->
-                                                    <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full ">
-                                                            <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                                                                style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 20%">
-                                                                20%
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-
-                                            <!-- GOAL 1 -->
-                                            <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white  shadow-sm transition-all duration-300 hover:shadow-md">
-                                                <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
-                                                    <!-- Reduced padding to p-3 -->
-                                                    <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
-                                                        BMR (Basal Metabolic Rate)
-                                                    </h5>
-                                                    <p
-                                                        class="text-sm font-normal text-gray-700 mb-4">
-                                                        Number of calories your body needs to accomplish its most basic
-                                                        (basal) life-sustaining functions.
-                                                    </p>
-                                                    <!-- Progress bar container -->
-                                                    <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full">
-                                                            <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                                                                style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 43%">
-                                                                43%
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <!-- GOAL 1 -->
-                                            <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
-                                                <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
-                                                    <!-- Reduced padding to p-3 -->
-                                                    <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
-                                                        BMR (Basal Metabolic Rate)
-                                                    </h5>
-                                                    <p
-                                                        class="text-sm font-normal text-gray-700 mb-4">
-                                                        Number of calories your body needs to accomplish its most basic
-                                                        (basal) life-sustaining functions.
-                                                    </p>
-                                                    <!-- Progress bar container -->
-                                                    <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full ">
-                                                            <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                                                                style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 56%">
-                                                                56%
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <!-- GOAL 1 -->
-                                            <div
-                                                class="w-full rounded-xl border border-gray-200 bg-white  shadow-sm transition-all duration-300 hover:shadow-md">
-                                                <a href="#"
-                                                    class="block p-4 rounded-lg hover:bg-gray-100 transition-all duration-300">
-                                                    <!-- Reduced padding to p-3 -->
-                                                    <h5
-                                                        class="mb-2 text-lg font-semibold tracking-tight text-gray-900 ">
-                                                        BMR (Basal Metabolic Rate)
-                                                    </h5>
-                                                    <p
-                                                        class="text-sm font-normal text-gray-700 mb-4">
-                                                        Number of calories your body needs to accomplish its most basic
-                                                        (basal) life-sustaining functions.
-                                                    </p>
-                                                    <!-- Progress bar container -->
-                                                    <div class="pb-1">
-                                                        <div class="w-full bg-gray-200 rounded-full ">
-                                                            <div class="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                                                                style="background: linear-gradient(to right, #FCD404, #FB6F74); width: 20%">
-                                                                20%
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="p-4">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
 
 
 
@@ -547,24 +288,23 @@
                                 <!-- Chart Container -->
                                 <div
                                     class="rounded-2xl border border-gray-200 bg-gray-100 h-full flex flex-col shadow-md">
-                                    <div
-                                        class="shadow-default rounded-2xl bg-white px-4 md:px-5 pb-6 pt-5 flex flex-col h-full">
+                                    <div class="shadow-default rounded-2xl bg-white px-4 md:px-5 pb-6 pt-5 flex flex-col h-full">
 
                                         <!-- Title Section -->
                                         <div class="flex flex-col sm:flex-row justify-between items-start ">
                                             <div>
                                                 <h3 class="text-lg font-semibold text-gray-800 ">
-                                                    Monthly Target
+                                                    Weekly Progress
                                                 </h3>
                                                 <p class="mt-1 text-sm md:text-base text-gray-500 ">
-                                                    Target you’ve set for each month
+                                                    Your progress for this week!
                                                 </p>
                                             </div>
                                         </div>
 
                                         <!-- Chart Section -->
-                                        <div class="relative flex-1 max-h-[250px] mt-4">
-                                            <div id="chartTwo" class="h-full min-h-[229px]"></div>
+                                        <div class="relative flex-1 max-h-full mt-4">
+                                            <div id="chartTwo" class="h-full max-h-full"></div>
                                         </div>
 
                                         <!-- Bottom Text -->
